@@ -6,6 +6,7 @@ on:
   push:
     branches: [main]
 jobs:
+  # The recommended way
   normal:
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +28,7 @@ jobs:
             ${{ runner.os }}-
       - name: Install Dependencies
         run: npm install
+  # The efficient way
   optimized-with-install:
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +44,7 @@ jobs:
       - id: node_modules_exists
         run: 'if [ -d "node_modules" ]; then echo "::set-output name=value::yes"; else echo "::set-output name=value::no"; fi'
       - run: npm install
+  # Another efficient way (maybe risky)
   optimized-without-install:
     runs-on: ubuntu-latest
     steps:
